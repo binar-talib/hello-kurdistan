@@ -25,14 +25,35 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  double containerWidth = 200;
+  double containerHeight = 100;
+  double fontSize = 14;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 300),
-          child: Center(
-            child: Text('Hello Kurdistan'),
+        child: Center(
+          child: AnimatedContainer(
+            width: containerWidth,
+            height: containerHeight,
+            duration: const Duration(milliseconds: 300),
+            decoration: BoxDecoration(
+              color: Colors.white70,
+              borderRadius: BorderRadius.circular(10.0),
+              boxShadow: [
+                BoxShadow(
+                  blurRadius: 40,
+                  color: const Color(0xFF7090B0).withAlpha(60),
+                  offset: const Offset(0, 16),
+                ),
+              ],
+            ),
+            child: Center(
+              child: Text(
+                'Hello Kurdistan',
+                style: TextStyle(fontSize: fontSize),
+              ),
+            ),
           ),
         ),
       ),
