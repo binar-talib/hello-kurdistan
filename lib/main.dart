@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -28,30 +30,40 @@ class _MyHomePageState extends State<MyHomePage> {
   double containerWidth = 200;
   double containerHeight = 100;
   double fontSize = 14;
+  Random random = Random();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: Center(
-          child: AnimatedContainer(
-            width: containerWidth,
-            height: containerHeight,
-            duration: const Duration(milliseconds: 300),
-            decoration: BoxDecoration(
-              color: Colors.white70,
-              borderRadius: BorderRadius.circular(10.0),
-              boxShadow: [
-                BoxShadow(
-                  blurRadius: 40,
-                  color: const Color(0xFF7090B0).withAlpha(60),
-                  offset: const Offset(0, 16),
+          child: GestureDetector(
+            onTap: () {
+              setState(() {
+                containerHeight = random.nextDouble() * (200.0 - 100.0) + 100.0;
+                containerWidth = random.nextDouble() * (300.0 - 200.0) + 200.0;
+                fontSize = random.nextDouble() * (20.0 - 14.0) + 14.0;
+              });
+            },
+            child: AnimatedContainer(
+              width: containerWidth,
+              height: containerHeight,
+              duration: const Duration(milliseconds: 300),
+              decoration: BoxDecoration(
+                color: Colors.white70,
+                borderRadius: BorderRadius.circular(10.0),
+                boxShadow: [
+                  BoxShadow(
+                    blurRadius: 40,
+                    color: const Color(0xFF7090B0).withAlpha(60),
+                    offset: const Offset(0, 16),
+                  ),
+                ],
+              ),
+              child: Center(
+                child: Text(
+                  'Hello Kurdistan',
+                  style: TextStyle(fontSize: fontSize),
                 ),
-              ],
-            ),
-            child: Center(
-              child: Text(
-                'Hello Kurdistan',
-                style: TextStyle(fontSize: fontSize),
               ),
             ),
           ),
